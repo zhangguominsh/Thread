@@ -16,7 +16,6 @@ void* ThreadStart(void* arg)
     if(g_tickets > 0)
     {
       g_tickets--; //总票数-1
-      usleep(10000); //模拟一个
       printf("i am thread [%p],I'll sell ticket number [%d]\n",\
                 pthread_self(),g_tickets + 1);
     }
@@ -30,6 +29,7 @@ void* ThreadStart(void* arg)
       break;//没有票了，直接返回该线程
     }
     pthread_mutex_unlock(&lock);
+    usleep(10000); //模拟一个
   }
   return NULL;
 }
